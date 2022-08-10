@@ -1,9 +1,10 @@
 import json
 import discord
 from discord import app_commands
-from twitter_data_search import checkUserTweet
 from utils import *
 from view.confirm import Confirm
+import commands.vip as vip
+import commands.ranked as ranked
 
 config = getConfig()
 
@@ -29,35 +30,13 @@ class aclient(discord.Client):
 client = aclient()
 tree = app_commands.CommandTree(client)
 
-
 # guild specific slash command
 @tree.command(guild=discord.Object(id=guild_id), name='vip', description='Pegar seu vip diario')
-async def tester(interaction: discord.Interaction):
-    emoji_certo = client.get_emoji(778443911974092840)
-    emoji_sirene = client.get_emoji(854510226962907156)
-    emoji_errado = client.get_emoji(778443911617708043)
+async def mainCommand(interaction: discord.Interaction):
+    await vip.vip(client, interaction)
 
-    with open("data.json", "r") as f:
-        data = json.load(f)
-
-    newCode = key_generator()
-    
-    view = Confirm()
-    embed = discord.Embed(title='',
-                    description=f'Poste um tweet com nossa hashtag `{format_hashtag(data["hashtag"])}` e com o seguinte código `{newCode}`\n\n*Assim que postar volte aqui e confirme*',
-                    color=COR)
-    embed.set_author(name=f'{interaction.user.name}#{interaction.user.discriminator}',
-                    icon_url=f'{interaction.user.avatar.url}')
-    await interaction.response.send_message(embed=embed, ephemeral = True, view=view)
-    await view.wait()
-    
-    if view.value:
-        if checkUserTweet(interaction.user, data['hashtag']) is True:
-            embed = discord.Embed(title='',
-                    description=f'{emoji_certo} {interaction.user.mention} acabou de ativar seu plano `VIP` | *Utilize:* /vip',
-                    color=VERDE)
-            await interaction.channel.send(embed=embed)
-        else:
-            await interaction.followup.send(content=f"{interaction.user.mention} Não conseguimos encontrar seu tweet com nossa hashtag e seu código 😥", ephemeral = True)
+@tree.command(guild=discord.Object(id=guild_id), name='join', description='Sorteia um time 5x5 em call')
+async def mainCommand(interaction: discord.Interaction):
+    await ranked.join(client, interaction)
 
 client.run(config.discord_token)
