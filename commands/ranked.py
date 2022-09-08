@@ -1,39 +1,45 @@
 import json
 import random
-from utils import checkUserTweet, date, format_hashtag, key_generator
+from utils import COR, VERDE, VERMELHO, Emoji, checkUserTweet, date, format_hashtag, key_generator, open_account
 from view.confirm import ConfirmTeam
 import discord
 
-COR = 0xf9eff8
-VERDE = 0x66bb6a
-VERMELHO = 0xef5350
-
 
 async def join(client: discord.Client, interaction: discord.Interaction):
-    emoji_certo = client.get_emoji(778443911974092840)
-    emoji_sirene = client.get_emoji(854510226962907156)
-    emoji_errado = client.get_emoji(778443911617708043)
-
+    await open_account(interaction.user)
     voice_state = interaction.user.voice
 
     if voice_state is None:
-        print('Não esta conectado a nenhum canal de voz')
+        embed = discord.Embed(title='',
+                description=f'{Emoji().errado} Você não está conectado a nenhum canal de voz',
+                color=VERMELHO)
+        embed.set_author(name=f'{interaction.user.name}#{interaction.user.discriminator}', icon_url=f'{interaction.user.display_avatar}')
+        await interaction.response.send_message(embed=embed)
         return
+
     voice_channel = interaction.user.voice.channel
     voice_members = voice_channel.members
+    # voice_members = ['1', '2', '3', '4', '5' ,'6' ,'7', '8']
     random.shuffle(voice_members)
     
-    # if len(voice_members) < 10:
-    #     embed = discord.Embed(title='',
-    #             description=f'{emoji_errado} {interaction.user.mention} Para sortear um time deve ter no minimo `10 membros` conectados a sua sala {voice_channel.mention}',
-    #             color=VERMELHO)
-    #     embed.set_author(name="Comando: /join")
-    #     await interaction.response.send_message(embed=embed)
-    #     return
-    view = ConfirmTeam()
-    embed = discord.Embed(title='Times Gerados', description=f'*Reaja conforme o time vencedor*', color=COR)
-    # embed.add_field(name="Time A", value=f"{voice_members[0].mention}\n{voice_members[1].mention}\n{voice_members[2].mention}\n{voice_members[3].mention}\n{voice_members[4].mention}", inline=True)
-    # embed.add_field(name="Time B", value=f"{voice_members[5].mention}\n{voice_members[6].mention}\n{voice_members[7].mention}\n{voice_members[8].mention}\n{voice_members[9].mention}", inline=True)
+    for membro in voice_members:
+        await open_account(membro)
+
+    if len(voice_members) < 8:
+        embed = discord.Embed(title='',
+                description=f'{Emoji().errado}  {interaction.user.mention} Para sortear um time deve ter no minimo `8 membros` conectados a sua sala {voice_channel.mention}',
+                color=VERMELHO)
+        embed.set_author(name=f'{interaction.user.name}#{interaction.user.discriminator}', icon_url=f'{interaction.user.display_avatar}')
+        await interaction.response.send_message(embed=embed)
+        return
+
+    capitaoA = voice_members[random.randint(0, 3)]
+    capitaoB = voice_members[random.randint(4, 7)]
+
+    view = ConfirmTeam(capitaoA, capitaoB, voice_members)
+    embed = discord.Embed(title='🕹️ Times Gerados', description=f'{Emoji().sino} *Após o jogo finalizar os dois capitães devem votar no time vencedor*', color=COR)
+    embed.add_field(name="Time A", value=f"Capitão: {capitaoA.mention}\n> {voice_members[0].mention}\n> {voice_members[1].mention}\n> {voice_members[2].mention}\n> {voice_members[3].mention}\n\n{Emoji().loading} **Status:** `Aguardando voto...`", inline=True)
+    embed.add_field(name="Time B", value=f"Capitão: {capitaoB.mention}\n> {voice_members[4].mention}\n> {voice_members[5].mention}\n> {voice_members[6].mention}\n> {voice_members[7].mention}\n\n{Emoji().loading} **Status:** `Aguardando voto...`", inline=True)
     embed.set_footer(text=f"{date()}")
     msg = await interaction.response.send_message(embed=embed, view=view)
     await view.wait()
