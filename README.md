@@ -89,4 +89,4 @@ python main.py
 
 Thank you for taking the time to read about my work.
 
-Any questions, criticisms or suggestions, please contact us, <a href="mailto:gabriellimamoraes@gmail.com/">contato</a> by my email
+Any questions, criticisms or suggestions, please contact us, <a href="mailto:gabriellimamoraes@gmail.com/">contact</a> by my email
