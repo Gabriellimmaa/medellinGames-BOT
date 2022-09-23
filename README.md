@@ -34,9 +34,11 @@ All library versions are in requirements.txt
 ---
 ## 🔧 Getting started
 
+This project requires python 3.9.10;
+
 1. Clone the repository
 ```bash
-git clone https://github.com/cod3rocket/iTourism.git
+git clone https://github.com/Gabriellimmaa/medellinGames-BOT.git
 ```
 
 2. Install dependencies
