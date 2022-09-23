@@ -2,6 +2,13 @@
 
 ---
 
+
+
+
+## ⚙️ Descrição
+
+Este projeto foi desenvolvido para um servidor no discord cujo nome é MedellinGames (@medellingames), o bot tem um sistema de verificar tweet para receber benefícios no bot, sortea um time 4x4 de membros em call, tem a possibilidade de criar torcidas para ganhar benefínicios.
+
 ## 📚 Seções
 
 O chatbot contém os seguintes comandos:
@@ -28,10 +35,39 @@ Para o desenvolvimento deste chatbot eu usei as seguintes tecnologias:
 Todas as versões das bibliotecas estão no requirements.txt
 
 ---
+## Getting started
 
-## ⚙️ Descrição
+1. Clone the repository
+```bash
+git clone https://github.com/cod3rocket/iTourism.git
+```
 
-Este projeto foi desenvolvido para um servidor no discord cujo nome é MedellinGames (@medellingames), o bot tem um sistema de verificar tweet para receber benefícios no bot, sortea um time 4x4 de membros em call, tem a possibilidade de criar torcidas para ganhar benefínicios.
+2. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+3. Edit the config.ini
+
+```bash
+[twitter]
+api_key = YOUR_API_KEY
+api_key_secret = YOUR_API_KEY
+access_token = YOUR_API_TOKEN
+access_token_secret = YOUR_API_TOKEN
+client_id = YOUR_CLIENT_ID
+client_secret = YOUR_CLIENT_SECRET
+bearer_token = YOUR_BEARER_TOKEN
+
+[discord]
+discord_token = YOUR_DISCORD_TOKEN
+```
+
+4 Run the project
+```bash
+python main.py
+```
 
 ---
 
