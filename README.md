@@ -70,7 +70,7 @@ python main.py
 
 ---
 
-## ✒️ Autor
+## ✒️ Author
 
 <table>
   <tr>
