@@ -3,15 +3,13 @@
 ---
 
 
+## ⚙️ Description
 
+This project was developed for a discord server whose name is MedellinGames (@medellingames), the bot has a system to verify tweets to receive benefits from the bot, draws a 4x4 team of members on call, has the possibility to create fans to win benefits .
 
-## ⚙️ Descrição
+## 🎮 Commands
 
-Este projeto foi desenvolvido para um servidor no discord cujo nome é MedellinGames (@medellingames), o bot tem um sistema de verificar tweet para receber benefícios no bot, sortea um time 4x4 de membros em call, tem a possibilidade de criar torcidas para ganhar benefínicios.
-
-## 📚 Seções
-
-O chatbot contém os seguintes comandos:
+The chatbot contains the following commands:
 
 - **!join:** Inicia um torneio;
 - **!vip:** Pegar seu vip diario por tweet;
@@ -21,9 +19,9 @@ O chatbot contém os seguintes comandos:
 
 ---
 
-## 🛠️ Desenvolvido com
+## 🛠️ Developed with
 
-Para o desenvolvimento deste chatbot eu usei as seguintes tecnologias:
+For the development of this chatbot I used the following technologies:
 
 - python 3.9.10;
 - pymongo==3.12.3
@@ -31,11 +29,10 @@ Para o desenvolvimento deste chatbot eu usei as seguintes tecnologias:
 - tweetpy==4.10.0
 - git+https://github.com/Rapptz/discord.py
 
-
-Todas as versões das bibliotecas estão no requirements.txt
+All library versions are in requirements.txt
 
 ---
-## Getting started
+## 🔧 Getting started
 
 1. Clone the repository
 ```bash
@@ -88,6 +85,6 @@ python main.py
 
 ---
 
-Obrigado por me ceder seu tempo lendo sobre o meu trabalho.
+Thank you for taking the time to read about my work.
 
-Qualquer dúvida, crítica ou sugestão entre em, <a href="mailto:gabriellimamoraes@gmail.com/">contato</a> pelo meu e-mail
+Any questions, criticisms or suggestions, please contact us, <a href="mailto:gabriellimamoraes@gmail.com/">contato</a> by my email
