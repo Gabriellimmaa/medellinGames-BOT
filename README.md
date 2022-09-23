@@ -11,11 +11,11 @@ This project was developed for a discord server whose name is MedellinGames (@me
 
 The chatbot contains the following commands:
 
-- **!join:** Inicia um torneio;
-- **!vip:** Pegar seu vip diario por tweet;
-- **!torcida:** Consulta a torcida de um jogador ou cria uma nova;
-- **!torcidas:** Exibe a lista com todas as torcidas;
-- **!aprovar:** Aprova uma torcida;
+- **!join:** Starts a tournament;
+- **!vip:** Get your daily vip by tweet;
+- **!torcida:** Consult a player's crowd or create a new one;
+- **!torcidas:** Displays the list with all the twists;
+- **!aprovar:** Approve a crowd;
 
 ---
 
